@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: reels-script-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: BOT_TOKEN
+        sync: false
+      - key: PPLX_API_KEY
+        sync: false
+      - key: MODEL
+        value: anthropic/claude-sonnet-5
+      - key: MAX_OUTPUT_TOKENS
+        value: "8000"
+      - key: ENABLE_WEB_SEARCH
+        value: "true"
+      - key: MAX_STEPS
+        value: "3"
+      - key: HISTORY_LIMIT
+        value: "24"
